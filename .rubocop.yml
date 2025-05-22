@@ -1,8 +1,106 @@
 # Omakase Ruby styling for Rails
 inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 
+# Подключаем плагины
+plugins:
+  - rubocop-rails
+  - rubocop-performance
+
+require:
+  - rubocop-rspec
+
 # Overwrite or add rules to create your own house style
 #
 # # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
 # Layout/SpaceInsideArrayLiteralBrackets:
 #   Enabled: false
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.2
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - 'tmp/**/*'
+
+# Длина строки
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - 'spec/**/*'
+
+# Длина метода
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - 'spec/**/*'
+
+# Размер класса
+Metrics/ClassLength:
+  Max: 150
+  Exclude:
+    - 'spec/**/*'
+
+# Размер модуля
+Metrics/ModuleLength:
+  Max: 150
+  Exclude:
+    - 'spec/**/*'
+
+# Аббревиатуры в именах
+Naming/VariableNumber:
+  EnforcedStyle: snake_case
+
+# Отступы
+Layout/IndentationWidth:
+  Width: 2
+
+# Пустые строки
+Layout/EmptyLinesAroundClassBody:
+  EnforcedStyle: empty_lines
+
+# Пробелы
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+# Строки
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+# Хеши
+Style/HashSyntax:
+  EnforcedStyle: ruby19
+
+# Методы
+Style/MethodDefParentheses:
+  EnforcedStyle: require_parentheses
+
+# Условные операторы
+Style/ConditionalAssignment:
+  EnforcedStyle: assign_to_condition
+
+# Комментарии
+Style/Documentation:
+  Enabled: false
+
+# Защита от ошибок
+Style/GuardClause:
+  MinBodyLength: 3
+
+# Модели
+Rails/HasManyOrHasOneDependent:
+  Enabled: true
+
+# Тесты
+RSpec/MultipleExpectations:
+  Max: 5
+
+RSpec/ExampleLength:
+  Max: 15
+
+RSpec/NestedGroups:
+  Max: 4

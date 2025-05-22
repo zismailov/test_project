@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Проверка стиля кода
+echo "Running RuboCop..."
+bundle exec rubocop
+
+# Проверка безопасности
+echo "Running Brakeman..."
+bundle exec brakeman
+
+# Проверка устаревших гемов
+echo "Running Bundle Audit..."
+bundle exec bundle-audit check --update 
