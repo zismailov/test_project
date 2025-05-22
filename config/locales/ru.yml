@@ -1,0 +1,17 @@
+ru:
+  views:
+    pagination:
+      first: "&laquo; Первая"
+      last: "Последняя &raquo;"
+      previous: "&lsaquo; Назад"
+      next: "Вперед &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Нет записей"
+          one: "Показана %{entry_name}"
+          other: "Показаны все %{count} %{entry_name}"
+      more_pages:
+        display_entries: "Показаны %{entry_name} %{first}&nbsp;-&nbsp;%{last} из %{total}" 

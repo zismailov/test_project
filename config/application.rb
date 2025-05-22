@@ -23,5 +23,13 @@ module TestProject
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Отключаем Turbo для удаления
+    config.action_view.sanitized_allowed_tags = []
+    config.action_view.sanitized_allowed_attributes = []
+
+    # Устанавливаем русский язык по умолчанию
+    config.i18n.default_locale = :ru
+    config.i18n.available_locales = [:ru, :en]
   end
 end
