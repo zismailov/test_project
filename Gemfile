@@ -26,7 +26,7 @@ group :development do
   gem "web-console"
   gem "rubocop", "~> 1.57"
   gem "rubocop-rails", "~> 2.22"
-  gem "rubocop-rspec", "~> 2.25"
+  gem "rubocop-rspec", "~> 3.6"
   gem "rubocop-performance", "~> 1.20"
 end
 
