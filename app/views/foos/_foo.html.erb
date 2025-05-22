@@ -1,0 +1,41 @@
+<%= turbo_frame_tag dom_id(foo) do %>
+  <div class="foo-item" 
+       data-controller="foo"
+       data-foo-target="item"
+       data-action="mouseenter->foo#hover mouseleave->foo#unhover">
+    
+    <div data-foo-target="name">
+      <h3>
+        <%= link_to foo.name, foo_path(foo), class: "text-dark" %>
+      </h3>
+      <div class="actions">
+        <%= link_to "Редактировать", edit_foo_path(foo), 
+            class: "btn btn-warning",
+            data: { turbo_frame: dom_id(foo) } %>
+        <%= button_to "Удалить", foo_path(foo), 
+            method: :delete,
+            class: "btn btn-danger",
+            data: { action: "click->foo#confirmDelete" } %>
+      </div>
+    </div>
+
+    <div data-foo-target="editForm" class="hidden">
+      <%= form_with(model: foo, 
+                  data: { 
+                    turbo_frame: dom_id(foo),
+                    action: "turbo:submit-end->foo#handleSubmit"
+                  }) do |f| %>
+        <div class="form-group">
+          <%= f.label :name, "Название" %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class="actions">
+          <%= f.submit "Сохранить", class: "btn btn-primary" %>
+          <%= link_to "Отмена", foo_path(foo), 
+              class: "btn btn-secondary",
+              data: { turbo_frame: dom_id(foo) } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %> 

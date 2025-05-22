@@ -1,0 +1,18 @@
+<div class="bars">
+  <h2>Записи</h2>
+
+  <div id="new_bar">
+    <%= render "form", foo: @foo, bar: @bar %>
+  </div>
+
+  <div id="bars">
+    <%= render @bars %>
+  </div>
+
+  <div class="pagination">
+    <%= paginate @bars, theme: 'bootstrap5' %>
+    <div class="page-info">
+      <%= page_entries_info @bars, entry_name: 'запись' %>
+    </div>
+  </div>
+</div> 

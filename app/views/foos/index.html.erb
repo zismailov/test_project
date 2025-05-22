@@ -1,0 +1,11 @@
+<h1>Объекты</h1>
+
+<div class="actions mb-3">
+  <%= link_to "Новый объект", new_foo_path, class: "btn btn-primary" %>
+</div>
+
+<div data-foo-target="list">
+  <%= render @foos %>
+</div>
+
+<%= paginate @foos %>

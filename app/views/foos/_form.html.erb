@@ -1,0 +1,21 @@
+<%= form_with model: foo, local: true do |f| %>
+  <% if foo.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(foo.errors.count, "ошибка", "ошибки", "ошибок") %> не позволили сохранить этот Foo:</h2>
+      <ul>
+        <% foo.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, "Имя" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Сохранить", class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+<%= turbo_stream.replace "bars-list" do %>
+  <div id="bars-list">
+    <%= render partial: "list", locals: { bars: @bars } %>
+
+    <div class="pagination-controls mt-4">
+      <% if @bars.prev_page %>
+        <%= link_to "Prev", foo_bars_path(@foo, page: @bars.prev_page), data: { turbo_frame: "bars-list" }, class: "btn btn-secondary" %>
+      <% end %>
+
+      <% if @bars.next_page %>
+        <%= link_to "Next", foo_bars_path(@foo, page: @bars.next_page), data: { turbo_frame: "bars-list" }, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

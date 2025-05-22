@@ -1,0 +1,46 @@
+<%= form_with(model: [@foo, bar], 
+            data: { 
+              controller: "form",
+              action: "turbo:submit-end->form#handleSubmit input->form#validateField",
+              form_target: "form",
+              new_record: bar.new_record?
+            }) do |f| %>
+  <%= render "shared/error_messages", resource: bar %>
+
+  <div class="field">
+    <%= f.label :name, "Название" %>
+    <%= f.text_field :name, 
+        class: "form-control",
+        data: { 
+          form_target: "name",
+          action: "blur->form#validateField"
+        } %>
+    <div class="invalid-feedback"></div>
+  </div>
+
+  <div class="field">
+    <%= f.label :description, "Описание" %>
+    <%= f.text_area :description, 
+        class: "form-control",
+        data: { 
+          form_target: "description",
+          action: "blur->form#validateField"
+        } %>
+    <div class="invalid-feedback"></div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit bar.new_record? ? "Создать" : "Сохранить", 
+        class: "btn btn-primary",
+        data: { 
+          disable_with: "Сохраняем..."
+        } %>
+    <% if bar.persisted? %>
+      <%= link_to "Отмена", "#", 
+          class: "btn btn-secondary",
+          data: { 
+            action: "click->form#cancelEdit"
+          } %>
+    <% end %>
+  </div>
+<% end %>

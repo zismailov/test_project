@@ -1,0 +1,44 @@
+<h1>Объект: <%= @foo.name %></h1>
+
+<div class="actions mb-3">
+  <%= link_to "← Назад к списку", foos_path, class: "btn btn-secondary" %>
+  <%= link_to "Редактировать", edit_foo_path(@foo), class: "btn btn-warning" %>
+  <%= button_to "Удалить", @foo, method: :delete, class: "btn btn-danger", data: { confirm: "Вы уверены?" } %>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <h2>Записи</h2>
+    <div id="bars" data-controller="bars">
+      <% @bars.each do |bar| %>
+        <%= render "bars/bar", bar: bar, foo: @foo %>
+      <% end %>
+    </div>
+    <%= paginate @bars %>
+  </div>
+
+  <div class="col-md-4">
+    <h2>Новая запись</h2>
+    <div id="new_bar">
+      <%= form_with(model: [@foo, Bar.new], 
+                  data: { 
+                    controller: "form",
+                    action: "turbo:submit-end->form#handleSubmit"
+                  }) do |f| %>
+        <div class="form-group">
+          <%= f.label :name, "Название" %>
+          <%= f.text_field :name, 
+              class: "form-control",
+              data: { form_target: "name" } %>
+        </div>
+        <div class="form-group">
+          <%= f.label :description, "Описание" %>
+          <%= f.text_area :description, 
+              class: "form-control",
+              data: { form_target: "description" } %>
+        </div>
+        <%= f.submit "Добавить", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

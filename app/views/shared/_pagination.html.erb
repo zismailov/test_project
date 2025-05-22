@@ -1,0 +1,10 @@
+<% if @foos.present? && @foos.total_pages > 1 %>
+  <div class="pagination mt-3">
+    <% @foos.total_pages.times do |page| %>
+      <% page_number = page + 1 %>
+      <%= link_to page_number, 
+          url_for(page: page_number), 
+          class: "btn #{page_number == @foos.current_page ? 'btn-dark' : 'btn-light'}" %>
+    <% end %>
+  </div>
+<% end %> 
